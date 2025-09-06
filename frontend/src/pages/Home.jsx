@@ -1,6 +1,10 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import Select from "react-select";
+import { BsStars } from "react-icons/bs";
+import { FaCode } from "react-icons/fa";
+import { useState } from "react";
+import Editor from "@monaco-editor/react";
 
 const options = [
   { value: "html-css", label: "HTML + CSS" },
@@ -10,6 +14,8 @@ const options = [
   { value: "html-tailwind-bootstrap", label: "HTML + Tailwind + Bootstrap" },
   { value: "React-Component", label: "HTML + React" },
 ];
+
+// (moved useState inside Home component)
 
 const customStyles = {
   control: (base) => ({
@@ -74,11 +80,13 @@ const darkTheme = (theme) => ({
 });
 
 const Home = () => {
+  const [outputScreen, setoutputScreen] = useState(true);
+
   return (
     <>
       <Navbar />
       <div className="flex items-center px-[100px]  gap-[40px] justify-between">
-        <div className="left w-[50%] h-[80vh] mt-5 p-[20px] bg-[#141319]">
+        <div className="left w-[50%] h-auto py-[30px] mt-5 p-[20px] bg-[#141319]">
           <h3 className="text-[25px] font-bold sp-text">
             Ai components Generator
           </h3>
@@ -100,12 +108,47 @@ const Home = () => {
               className="w-full min-h-[250px] text-white  bg-[#09090b] mt-2 rounded-2xl"
               placeholder="Describe your component and Relax Ai will code..."
             ></textarea>
-            <button className="flex items-center  p-[15px] rounded-lg border-0 cursor-pointer bg-gradient-to-r from-purple-600 via-rose-400 to-pink-500 mt-3 ml-auto min-w-[120px] text-center">
-              Generate
-            </button>
+            <div className="flex items-center justify-between">
+              <p>Click on generate button</p>
+              <button className="generate flex items-center p-[15px] rounded-lg border-0 cursor-pointer bg-gradient-to-r from-purple-600 via-rose-400 to-pink-500 mt-4  min-h-[35px] text-center">
+                Generate{" "}
+                <i>
+                  <BsStars />
+                </i>
+              </button>
+            </div>
           </p>
         </div>
-        <div className="right w-[50%] h-[80vh] mt-5 bg-[#141319]"></div>
+
+        {outputScreen === false ? (
+          <>
+            <div className="right w-[50%] h-[80vh] mt-5 bg-[#141319] rounded-2xl">
+              <div className="skeleton w-full h-full flex items-center justify-center flex-col">
+                <div className="circle flex items-center justify-center text-[30px] p-[20px] w-[80px] h-[80px] rounded-[50%] bg-gradient-to-r from-purple-600 via-rose-400 to-pink-500 ">
+                  <FaCode />
+                </div>
+                <p className="text-[16px] text-gray-400 mt-2">
+                  Your component code & code will be here
+                </p>
+              </div>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="top w-full h-[60px] flex items-center text-black font-bold gap-[15px] px-[20px]">
+              <button className="btn w-[50%] p-[10px]  bg-purple-400 rounded-xl cursor-pointer transition-all">Code</button>
+              <button className="btn w-[50%] p-[10px] bg-purple-400 rounded-xl cursor-pointer transition-all">Preview</button>
+            </div>
+            <div className="editor">
+              <Editor
+                height="70vh"
+                theme="vs-dark"
+                defaultLanguage="javascript"
+                defaultValue="// some comment"
+              />
+            </div>
+          </>
+        )}
       </div>
     </>
   );
