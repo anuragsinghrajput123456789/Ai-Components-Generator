@@ -19,28 +19,23 @@ html {
 }
 
 :root {
-  --primary-bg: #09090b;
+  --primary-bg: #09090B;
   --secondary-bg: #141319;
-  --teritiary-bg: #17171c;
+  --tertiary-bg: #17171C;
 }
 
 .sp-text {
-  background-image: conic-gradient(at top, #8b5cf6, #9f1239);
-
-  /* Make gradient visible only on text */
-  -webkit-background-clip: text; /* Safari/Chrome */
+   background: conic-gradient(at top, #d81ee9, #ef09c5); /* from-purple-400 → to-purple-500 */
+  -webkit-background-clip: text;
   background-clip: text;
-
-  /* Transparent text so gradient shows through */
   color: transparent;
-  -webkit-text-fill-color: transparent; /* Safari */
 }
+
 .icon{
   padding: 15px;
   font-size: 20px;
-  border: 1px solid #1f3927;
-  border-radius: 15px;
-  cursor: pointer;
+  border: 1px solid #1f2937;
+  border-radius: 10px;
   background-color: var(--secondary-bg);
-}
-
+  cursor: pointer;
+};
