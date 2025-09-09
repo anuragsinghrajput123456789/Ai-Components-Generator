@@ -9,7 +9,7 @@ const Navbar = () => {
   
   return (
     <>
-      <div className="w-full bg-slate-900/70 backdrop-blur-md border-b border-slate-700/50">
+      <div className="w-full from-purple-900 to-rose-400  bg-gradient-to-r backdrop-blur-md border-b border-slate-700/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
